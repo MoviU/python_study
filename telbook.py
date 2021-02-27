@@ -1,6 +1,4 @@
-tel_book = {
-    'max': '012309128'
-}
+tel_book = {}
 # Пошук за іменем
 def seacrh_by_name(name):
     if name in tel_book.keys():
@@ -38,35 +36,37 @@ def delete(name):
         return print("Такого контакта немає")
     del tel_book[name]
     return print(f"Контакт {name} був успішно видаленний")
-
+# Інтерфейс
 def ui():
     try:
-        # об'явлення словаря
-        print('--------------')
-        # Виведення команд для користувача
-        commands = ['Пошук елемента за іменем', "Пошук елемента за номером", "Виведення значень записника", "Додавання нового запису", "Оновлення телефону абонента", "Видалення абонента", "Вихід з програми"]
-        print('Всі команди: ')
-        for i in range(len(commands)):
-            print(f'\t{i + 1} - {commands[i]}')
-        command = input('Виберіть команду: ')
-        print()
-        # Описання роботи команд
-        if command == '7':
-            print('Кінець програми')
-            exit()
-        elif command == '1':
-            seacrh_by_name(input("Введіть ім'я контакта: "))
-        elif command == '2':
-            seacrh_by_phone(input("Введіть номер контакта: "))
-        elif command == '3':
-            view()
-        elif command == '4':
+        if len(tel_book) < 3:
             add(input("Введіть ім'я контакта: "))
-        elif command == '5':
-            update(input("Введіть ім'я контакта: "))
-        elif command == '6':
-            delete(input("Введіть ім'я контакта: "))
-        print()
+        print('--------------')
+        if len(tel_book) >= 3:
+            # Виведення команд для користувача
+            commands = ['Пошук елемента за іменем', "Пошук елемента за номером", "Виведення значень записника", "Додавання нового запису", "Оновлення телефону абонента", "Видалення абонента", "Вихід з програми"]
+            print('Всі команди: ')
+            for i in range(len(commands)):
+                print(f'\t{i + 1} - {commands[i]}')
+            command = input('Виберіть команду: ')
+            print()
+            # Описання роботи команд
+            if command == '7':
+                print('Кінець програми')
+                exit()
+            elif command == '1':
+                seacrh_by_name(input("Введіть ім'я контакта: "))
+            elif command == '2':
+                seacrh_by_phone(input("Введіть номер контакта: "))
+            elif command == '3':
+                view()
+            elif command == '4':
+                add(input("Введіть ім'я контакта: "))
+            elif command == '5':
+                update(input("Введіть ім'я контакта: "))
+            elif command == '6':
+                delete(input("Введіть ім'я контакта: "))
+            print()
     except ValueError:
         print('Ви ввели неправильні значення. Попробуйте ще раз')
     ui()
